@@ -1,5 +1,5 @@
 {
-  "name": "alex-escape",
+  "name": "project-tile",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -13,10 +13,12 @@
     "typescript": "^5.0.2",
     "vite": "^5.3.5",
     "vite-bundle-visualizer": "^1.2.1",
+    "vite-plugin-singlefile": "^2.0.2",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "dependencies": {
     "@pixi/particle-emitter": "^5.0.8",
+    "@pixi/sound": "^6.0.1",
     "eventemitter3": "^5.0.1",
     "gsap": "^3.11.5",
     "howler": "^2.2.4",
