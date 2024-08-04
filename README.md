@@ -28,4 +28,4 @@ To build the project for production, use the following command:
 
 You can also start a local server to preview the result:
 
-	npm run dev
+	npm run preview
