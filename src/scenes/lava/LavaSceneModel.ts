@@ -1,6 +1,5 @@
 import { Model } from '@/engine/Model';
 import { Container } from 'pixi.js';
-import { CharacterSequence } from './components/alex/CharacterSequence';
 
 export class LavaSceneModel extends Model {
 
@@ -15,7 +14,5 @@ export class LavaSceneModel extends Model {
 
 	public collectedWood = 0
 	public requiredWood = 3
-
-	public alexSequence?: CharacterSequence
 
 }
