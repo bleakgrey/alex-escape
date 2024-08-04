@@ -1,15 +1,27 @@
 {
   "name": "alex-escape",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build --emptyOutDir",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "vite": "^5.3.4"
+    "@types/howler": "^2.2.11",
+    "typescript": "^5.0.2",
+    "vite": "^5.3.5",
+    "vite-bundle-visualizer": "^1.2.1",
+    "vite-tsconfig-paths": "^4.3.2"
+  },
+  "dependencies": {
+    "@pixi/particle-emitter": "^5.0.8",
+    "eventemitter3": "^5.0.1",
+    "gsap": "^3.11.5",
+    "howler": "^2.2.4",
+    "pixi-filters": "^6.0.4",
+    "pixi-viewport": "^5.0.3",
+    "pixi.js": "^8.2.6"
   }
 }
