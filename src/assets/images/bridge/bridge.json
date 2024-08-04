@@ -1,0 +1,44 @@
+{"frames": {
+
+"0.png":
+{
+	"frame": {"x":0,"y":0,"w":461,"h":259},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":21,"w":461,"h":259},
+	"sourceSize": {"w":470,"h":281}
+},
+"1.png":
+{
+	"frame": {"x":465,"y":0,"w":461,"h":260},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":21,"w":461,"h":260},
+	"sourceSize": {"w":470,"h":281}
+},
+"2.png":
+{
+	"frame": {"x":930,"y":0,"w":461,"h":260},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":21,"w":461,"h":260},
+	"sourceSize": {"w":470,"h":281}
+},
+"3.png":
+{
+	"frame": {"x":1395,"y":0,"w":465,"h":281},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":0,"w":465,"h":281},
+	"sourceSize": {"w":470,"h":281}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "bridge.png",
+	"format": "RGBA8888",
+	"size": {"w":1860,"h":281},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:fa8d5d89c758e656858b500ba6f61e93:549e4c790963f9aa387f7edf20c867a0:b1ca15253a4b9b64e3a336815f6a9f0b$"
+}
+}
