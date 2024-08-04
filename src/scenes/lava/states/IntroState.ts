@@ -97,7 +97,5 @@ export class IntroState extends SceneState {
                 gsap.timeline({ delay: 0.5 }).call(() => { this.audio.play(SoundName.ALEX_WHAT) })
                 this.model.isIntroPlayed = true
             })
-
-            .seek(99, false)
     }
 }

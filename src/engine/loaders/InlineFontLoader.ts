@@ -2,65 +2,63 @@ import { ExtensionType, BitmapFont, LoaderParserPriority, bitmapFontTextParser, 
 import { getTexture } from "../Helpers";
 
 export default {
-    extension: {
-        type: ExtensionType.LoadParser,
-        priority: LoaderParserPriority.High,
-    },
-    type: ExtensionType.LoadParser,
-    name: 'inlineFontLoader',
+	extension: {
+		type: ExtensionType.LoadParser,
+		priority: LoaderParserPriority.High,
+	},
+	type: ExtensionType.LoadParser,
+	name: 'inlineFontLoader',
 
-    test(url: string): boolean {
-        return false
-    },
+	test(url: string): boolean {
+		return false
+	},
 
-    async testParse(data: string): Promise<boolean> {
-        return bitmapFontTextParser.test(data) || bitmapFontXMLStringParser.test(data);
-    },
+	async testParse(data: string): Promise<boolean> {
+		return bitmapFontTextParser.test(data) || bitmapFontXMLStringParser.test(data);
+	},
 
-    async parse(asset: string, data: ResolvedAsset, loader: Loader): Promise<BitmapFont> {
-        const bitmapFontData = bitmapFontTextParser.test(asset)
-            ? bitmapFontTextParser.parse(asset)
-            : bitmapFontXMLStringParser.parse(asset);
+	async parse(asset: string, data: ResolvedAsset, loader: Loader): Promise<BitmapFont> {
+		const bitmapFontData = bitmapFontTextParser.test(asset)
+			? bitmapFontTextParser.parse(asset)
+			: bitmapFontXMLStringParser.parse(asset);
 
-        const { src } = data;
-        const { pages } = bitmapFontData;
-        const textureUrls = [];
+		const { src } = data;
+		const { pages } = bitmapFontData;
+		const textureUrls = [];
 
-        // if we have a distance field - we can assume this is a signed distance field font
-        // and we should use force linear filtering and no alpha premultiply
-        const textureOptions = (bitmapFontData.distanceField) ? {
-            scaleMode: 'linear',
-            alphaMode: 'premultiply-alpha-on-upload',
-            autoGenerateMipmaps: false,
-            resolution: 1,
-        } : {};
+		const textureOptions = (bitmapFontData.distanceField) ? {
+			scaleMode: 'linear',
+			alphaMode: 'premultiply-alpha-on-upload',
+			autoGenerateMipmaps: false,
+			resolution: 1,
+		} : {};
 
-        for (let i = 0; i < pages.length; ++i){
-            const pageFile = pages[i].file;
-            textureUrls.push({
-                src: pageFile,
-                data: textureOptions
-            });
-        }
+		for (let i = 0; i < pages.length; ++i){
+			const pageFile = pages[i].file;
+			textureUrls.push({
+				src: pageFile,
+				data: textureOptions
+			});
+		}
 
-        const textures = textureUrls.map((key) => getTexture(key.src))
-        const bitmapFont = new BitmapFont({
-            data: bitmapFontData,
-            textures
-        }, src);
+		const textures = textureUrls.map((key) => getTexture(key.src))
+		const bitmapFont = new BitmapFont({
+			data: bitmapFontData,
+			textures
+		}, src);
 
-        return bitmapFont;
-    },
+		return bitmapFont;
+	},
 
-    async load(url: string, _options: ResolvedAsset): Promise<string> {
-        const response = await DOMAdapter.get().fetch(url);
-        return await response.text();
-    },
+	async load(url: string, _options: ResolvedAsset): Promise<string> {
+		const response = await DOMAdapter.get().fetch(url);
+		return await response.text();
+	},
 
-    async unload(bitmapFont: BitmapFont, _resolvedAsset: ResolvedAsset, loader: Loader): Promise<void> {
-        await Promise.all(bitmapFont.pages.map((page) => loader.unload(page.texture.source._sourceOrigin)));
+	async unload(bitmapFont: BitmapFont, _resolvedAsset: ResolvedAsset, loader: Loader): Promise<void> {
+		await Promise.all(bitmapFont.pages.map((page) => loader.unload(page.texture.source._sourceOrigin)));
 
-        bitmapFont.destroy();
-    }
+		bitmapFont.destroy();
+	}
 
 };
