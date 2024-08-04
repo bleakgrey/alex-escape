@@ -34,9 +34,6 @@ export class Game extends PIXI.Application {
         this.stage.interactiveChildren = true
         this.stage.hitArea = this.screen
 
-        this.styleManager = this.stage.addChild(new StyleManager())
-        this.styleManager.start()
-
         this.sceneManager = this.stage.addChild(new SceneManager(this.config))
 
         const container = document.getElementById('app')!
