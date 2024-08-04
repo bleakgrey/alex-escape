@@ -10,10 +10,11 @@ import { Bubble } from './components/ui/Bubble'
 import { FlowingLava } from './components/FlowingLava'
 import { Hand } from './components/merge/Hand'
 import { UiNode } from './components/ui/UiNode'
-import { Texture } from 'pixi.js'
+import { Point, Texture } from 'pixi.js'
 import { MergeHint } from './components/ui/MergeHint'
 import { EffectsNode } from './components/fx/EffectsNode'
 import { Character } from './components/alex/Character'
+import { CharacterSequence } from './components/alex/CharacterSequence'
 
 export default () =>
 	<ContainerNode>
@@ -61,6 +62,28 @@ export default () =>
 				<Character label={'Character'}
 					position={{x: 1090, y: 1111}}
 					scale={{x: -1, y: 1}}
+					sequences={{
+						[CharacterSequence.IDLE]: {
+							texture: Assets.ALEX_THINKING,
+							atlas: Assets.ALEX_THINKING_ATLAS,
+							position: new Point(-10, -100),
+						},
+						[CharacterSequence.RUNNING]: {
+							texture: Assets.ALEX_RUNNING,
+							atlas: Assets.ALEX_RUNNING_ATLAS,
+							position: new Point(10, -70),
+						},
+						[CharacterSequence.JUMPING]: {
+							texture: Assets.ALEX_JUMPING,
+							atlas: Assets.ALEX_JUMPING_ATLAS,
+							position: new Point(-10, -70),
+						},
+						[CharacterSequence.SHOCKED]: {
+							texture: Assets.ALEX_SHOCKED,
+							atlas: Assets.ALEX_SHOCKED_ATLAS,
+							position: new Point(-10, -95),
+						},
+					}}
 				/>
 				<SpriteNode label={'BridgeFg'}
 					classes={Styles.BRIDGE}
@@ -74,8 +97,6 @@ export default () =>
 				<SpriteNode label={'CameraBox'}
 					classes={Styles.CAMERA_VIEW}
 					anchor={{x: 0.5, y: 0.5}}
-					// texture={Texture.WHITE}
-					// alpha={0.2}
 				/>
 			</ContainerNode>
 		</Viewport>
