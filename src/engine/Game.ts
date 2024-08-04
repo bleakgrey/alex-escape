@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
 import Assets from '@/Assets'
+import InlineFontLoader from './loaders/InlineFontLoader'
 import { Scene } from './Scene'
 import { SceneManager } from './SceneManager'
 import { StyleManager } from './StyleManager'
@@ -21,6 +22,8 @@ export class Game extends PIXI.Application {
         super()
         this.config = config
 
+        PIXI.extensions.add(InlineFontLoader)
+
         this.launch()
     }
 
@@ -34,6 +37,9 @@ export class Game extends PIXI.Application {
         this.stage.interactiveChildren = true
         this.stage.hitArea = this.screen
 
+        this.styleManager = this.stage.addChild(new StyleManager())
+        this.styleManager.start()
+
         this.sceneManager = this.stage.addChild(new SceneManager(this.config))
 
         const container = document.getElementById('app')!
@@ -41,19 +47,26 @@ export class Game extends PIXI.Application {
     }
 
     private async loadAssets() {
+        // console.dir(Object.entries(Assets))
+
         return new Promise(async (resolve) => {
             for (const [key, url] of Object.entries(Assets)) {
+                // console.debug('>', key, url)
 
+                // If the asset is a preparsed object, skip loading it
                 if (typeof url === 'object')
                     continue
 
+                // Skip loading SVGs since they are used in Graphics context internally
                 if (typeof url === 'string' && url.includes('<svg'))
                     continue
 
-                await PIXI.Assets.load({
+                const result = await PIXI.Assets.load({
                     alias: key,
                     src: url as String,
                 });
+
+                // console.log(`>>> ${key}`, result)
             }
 
             resolve(true)

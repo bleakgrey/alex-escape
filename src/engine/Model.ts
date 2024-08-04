@@ -11,6 +11,7 @@ export class Model extends EventEmitter {
 
                 target.emit(`${String(prop)}`, newValue)
                 target.emit('**', prop)
+                // console.log('---upd', prop, newValue)
 
                 return result
             },
