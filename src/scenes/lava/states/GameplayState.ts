@@ -2,10 +2,10 @@ import { Container } from "pixi.js"
 import { SceneState } from "./SceneState"
 import { Wood } from "../components/merge/Wood"
 import { SoundName } from "@/Sounds"
+import { CharacterSequence } from "../components/alex/CharacterSequence"
 import gsap from 'gsap'
 import Assets from "@/Assets"
 import Events from "../Events"
-import { CharacterSequence } from "../components/alex/CharacterSequence"
 
 export class GameplayState extends SceneState {
 	private readonly GAMEPLAY_DURATION = 25
