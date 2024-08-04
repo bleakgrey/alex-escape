@@ -55,7 +55,7 @@ export default {
 	HINT_ARROW,
 	LOGO,
 	FAIL,
-    BUTTON,
+	BUTTON,
 
 	BRIDGE_ATLAS,
 	BRIDGE_JSON,

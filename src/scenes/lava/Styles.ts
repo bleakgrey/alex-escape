@@ -45,18 +45,18 @@ export default {
 			},
 		}
 	},
-    END_CARD_LOGO: {
-        alignment: { x: 0.5, y: 0.35 },
+	END_CARD_LOGO: {
+		alignment: { x: 0.5, y: 0.35 },
 		'(orientation: portrait)': {
 			alignment: { x: 0.5, y: 0.4 },
 		}
-    },
-    END_CARD_BUTTON: {
-        cursor: 'pointer',
-        interactive: true,
-        alignment: {x: 0.5, y: 0.75},
+	},
+	END_CARD_BUTTON: {
+		cursor: 'pointer',
+		interactive: true,
+		alignment: {x: 0.5, y: 0.75},
 		'(orientation: portrait)': {
 			alignment: {x: 0.5, y: 0.65},
 		}
-    },
+	},
 }

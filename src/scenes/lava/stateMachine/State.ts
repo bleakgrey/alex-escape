@@ -1,5 +1,5 @@
 export interface State {
-    canEnter(): boolean
-    onEnter(): void
-    onLeave(): void
+	canEnter(): boolean
+	onEnter(): void
+	onLeave(): void
 }

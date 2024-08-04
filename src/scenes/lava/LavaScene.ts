@@ -11,34 +11,34 @@ import { OutroState } from "./states/OutroState"
 
 export default class LavaScene extends Scene {
 
-    public model: LavaSceneModel
-    private stateMachine!: StateMachine
-    private camera!: CameraState
+	public model: LavaSceneModel
+	private stateMachine!: StateMachine
+	private camera!: CameraState
 
-    constructor() {
-        super(View)
-        this.model = provide<LavaSceneModel>(ServiceNames.SCENE_MODEL, new LavaSceneModel())
-        this.model.on('**', this.onModelUpdated, this)
-    }
+	constructor() {
+		super(View)
+		this.model = provide<LavaSceneModel>(ServiceNames.SCENE_MODEL, new LavaSceneModel())
+		this.model.on('**', this.onModelUpdated, this)
+	}
 
-    override onStart() {
-        super.onStart()
+	override onStart() {
+		super.onStart()
 
-        this.camera = inject(ServiceNames.CAMERA_STATE)
-        this.camera.cameraBox = this.view.getChildByLabel('CameraBox', true)
+		this.camera = inject(ServiceNames.CAMERA_STATE)
+		this.camera.cameraBox = this.view.getChildByLabel('CameraBox', true)
 
-        this.stateMachine = new StateMachine([
-            new ResultState(this),
-            new IntroState(this),
-            new OutroState(this),
-            new GameplayState(this),
-        ])
-        
-        Ticker.shared.addOnce(() => this.stateMachine.update())
-    }
+		this.stateMachine = new StateMachine([
+			new ResultState(this),
+			new IntroState(this),
+			new OutroState(this),
+			new GameplayState(this),
+		])
+		
+		Ticker.shared.addOnce(() => this.stateMachine.update())
+	}
 
-    private onModelUpdated() {
-        this.stateMachine?.update()
-    }
+	private onModelUpdated() {
+		this.stateMachine?.update()
+	}
 
 }
